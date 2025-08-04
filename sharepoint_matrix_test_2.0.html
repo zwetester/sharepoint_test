@@ -295,7 +295,24 @@
             </tbody>
         </table>
     </div>
+    <script>
+        // Get the specific Massnahme cell with the info bubble
+        const massnahmeCell = document.querySelector('td.flip-container');
+        const infoBubble = massnahmeCell.querySelector('.info-bubble');
+
+        if (massnahmeCell && infoBubble) {
+            massnahmeCell.addEventListener('mouseover', () => {
+                infoBubble.style.opacity = '1';
+                infoBubble.style.pointerEvents = 'auto';
+            });
+            massnahmeCell.addEventListener('mouseout', () => {
+                infoBubble.style.opacity = '0';
+                infoBubble.style.pointerEvents = 'none';
+            });
+        }
+    </script>
 
 </body>
 </html>
+
 
