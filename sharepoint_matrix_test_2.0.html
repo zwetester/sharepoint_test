@@ -140,7 +140,36 @@
             margin: 0;
             font-size: 14px;
         }
+	/* --- Info Bubble Styling --- */
+        .info-bubble {
+            position: absolute;
+            bottom: 100%; /* Position above the cell */
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0; /* Initially hidden */
+            pointer-events: none; /* Allows mouse to pass through when hidden */
+            transition: opacity 0.3s ease;
+            z-index: 10;
+        }
 
+        .info-bubble::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #333;
+        }
     </style>
 </head>
 <body>
@@ -174,6 +203,10 @@
                     
                     <!-- This whole TD is one flip card -->
                     <td class="flip-container">
+			<!-- Info bubble moved here -->
+                        <div class="info-bubble">
+                            POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
+			<div>
                         <a href="https://www.google.com" target="_blank" class="card-link">
                             <div class="flipper">
                                 <div class="front">NOVA-Prinzip</div>
@@ -204,6 +237,10 @@
                 <tr class="data-row even">
                     <!-- No category cell here, it's covered by rowspan -->
                     <td class="flip-container">
+			<!-- Info bubble moved here -->
+                        <div class="info-bubble">
+                            POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
+			<div>
                         <a href="https://www.bing.com" target="_blank" class="card-link">
                             <div class="flipper">
                                 <div class="front">AutoTAG</div>
@@ -261,3 +298,4 @@
 
 </body>
 </html>
+
