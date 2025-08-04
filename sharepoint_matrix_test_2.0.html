@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktive Projektmatrix</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+            margin: 0; /* Changed to remove all default margins */
+            padding: 0; /* Changed to remove all default padding */
+            background-color: #ffffff;
+        }
+
+        .matrix-container {
+            width: 100%; /* Already set to full width */
+            padding: 15px; /* Added padding to the container instead of the body */
+            box-sizing: border-box; /* Ensures padding is included in the width */
+            /* NOTE: The black border you see is likely from the SharePoint web part's
+               container and not from this code. By removing padding on the body and
+               making the internal container full-width, this code will push right
+               up against the edges of the web part. */
+        }
+
+        .main-title {
+            font-size: 24px;
+            color: #004578;
+            font-weight: bold;
+            margin-top: 0; /* Removed top margin to align with the top edge */
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-style: hidden; /* Hide outer table border to let cells define the look */
+        }
+
+        th, td {
+            border: 1px solid #c8c6c4;
+            padding: 0; /* Padding is now controlled by inner divs */
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        thead th {
+            background-color: #004578;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        .top-header {
+            font-weight: normal;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+
+        /* --- NEW: Category Cell Styling --- */
+        td.category-cell {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #c8c6c4;
+        }
+
+        /* --- NEW: Flip Card CSS --- */
+
+        /* The container for the flip effect (the table cell) */
+        .flip-container {
+            perspective: 1000px;
+            background-color: transparent;
+        }
+
+        /* The flipper element that gets rotated */
+        .flipper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.7s;
+            transform-style: preserve-3d;
+        }
+
+        /* Apply the flip on row hover */
+        tr:hover .flipper {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and Back side styling */
+        .front, .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Safari */
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+        }
+
+        .front {
+            background-color: #ffffff;
+            color: #333;
+        }
+        
+        /* Make alternating rows a different color */
+        tr.data-row.odd .front {
+            background-color: #f2f2f2;
+        }
+
+
+        .back {
+            background-color: #005a9e; /* A slightly brighter blue for the back */
+            color: white;
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+        
+        /* --- NEW: Clickable Link Styling --- */
+        a.card-link {
+            display: block;
+            width: 100%;
+            height: 50px; /* Give the link a fixed height */
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .back-content h4 {
+            margin: 0 0 5px 0;
+        }
+        .back-content p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="matrix-container">
+        <h1 class="main-title">Weitere Konkretisierung (Verknüpfung mit Projekten)</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="top-header" colspan="3"></th>
+                    <th class="top-header" colspan="6">Zahlt ein auf: (Element aus Zielbild)</th>
+                </tr>
+                <tr>
+                    <th>Kategorie</th>
+                    <th>Massnahme</th>
+                    <th>Projekt / extern</th>
+                    <th>Netzmonitoring</th>
+                    <th>Flex</th>
+                    <th>dT</th>
+                    <th>rNM</th>
+		    <th>NOVA</th>
+		    <th>...</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- /// KATEGORIE 1 /// -->
+                <!-- Set rowspan to the number of measures in this category (e.g., rowspan="2") -->
+                <tr class="data-row odd">
+                    <td class="category-cell" rowspan="2">GEZIELTE VORBEREITUNG</td>
+                    
+                    <!-- This whole TD is one flip card -->
+                    <td class="flip-container">
+                        <a href="https://www.google.com" target="_blank" class="card-link">
+                            <div class="flipper">
+                                <div class="front">NOVA-Prinzip</div>
+                                <div class="back">
+                                    <div class="back-content">
+                                        <h4>NOVA-Prinzip</h4>
+                                        <p>Klicken für Details</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="flip-container">
+                        <a href="https://www.google.com" target="_blank" class="card-link">
+                            <div class="flipper">
+                                <div class="front">NOVA-Tool</div>
+                                <div class="back">
+                                    <div class="back-content"><h4>NOVA-Tool</h4><p>Link zum Projektportal</p></div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
+                </tr>
+                <tr class="data-row even">
+                    <!-- No category cell here, it's covered by rowspan -->
+                    <td class="flip-container">
+                        <a href="https://www.bing.com" target="_blank" class="card-link">
+                            <div class="flipper">
+                                <div class="front">AutoTAG</div>
+                                <div class="back">
+                                    <div class="back-content"><h4>AutoTAG</h4><p>Dokumentation öffnen</p></div>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="flip-container"><div class="flipper"><div class="front">PF TAG Tool</div><div class="back">Kontaktinfo</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
+                </tr>
+
+                <!-- /// KATEGORIE 2 /// -->
+                <tr class="data-row odd">
+                    <td class="category-cell" rowspan="1">FOKUSSIERTE UMSETZUNG</td>
+                    <td class="flip-container">
+                        <a href="#" target="_blank" class="card-link">
+                            <div class="flipper">
+                                <div class="front">Intelligente Trafostation</div>
+                                <div class="back"><h4>Intelligente Trafostation</h4><p>Details anzeigen</p></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="flip-container"><div class="flipper"><div class="front">iTs-Rollout</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
+                </tr>
+		
+		<!-- /// KATEGORIE 3 /// -->
+                <tr class="data-row odd">
+                    <td class="category-cell" rowspan="1">AKTIVE GESTALTUNG</td>
+                    <td class="flip-container">
+                        <a href="#" target="_blank" class="card-link">
+                            <div class="flipper">
+                                <div class="front">Dynamische Tariffe</div>
+                                <div class="back"><h4>Dynamische Tariffe</h4><p>Details anzeigen</p></div>
+                            </div>
+                        </a>
+                    </td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Tariffe</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
+                    <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
