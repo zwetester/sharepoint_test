@@ -54,7 +54,7 @@
             border-bottom: 1px solid white;
         }
 
-        /* --- Updated: Category Cell Styling --- */
+        /* --- Updated: Category Cell Styling and Row Colors --- */
         /* Base style for all category cells */
         td.category-cell {
             font-weight: bold;
@@ -64,16 +64,16 @@
             border: 1px solid #c8c6c4;
         }
         
-        /* New classes for different category colors */
-        .category-color-1 {
+        /* New classes for coloring entire category rows */
+        .category-row-1 .front, .category-row-1 .category-cell {
             background-color: #e6f3ff; /* A soft blue */
         }
         
-        .category-color-2 {
+        .category-row-2 .front, .category-row-2 .category-cell {
             background-color: #e6ffe6; /* A soft green */
         }
 
-        .category-color-3 {
+        .category-row-3 .front, .category-row-3 .category-cell {
             background-color: #fffde6; /* A soft yellow */
         }
         
@@ -110,20 +110,10 @@
             box-sizing: border-box;
         }
 
+        /* The front side now gets its color from the parent category-row class */
         .front {
-            background-color: #ffffff;
             color: #333;
         }
-        
-        /* Alternating rows for better readability */
-        tr.data-row.odd .front {
-            background-color: #f2f2f2;
-        }
-
-        tr.data-row.even .front {
-            background-color: #ffffff;
-        }
-
 
         .back {
             background-color: #005a9e;
@@ -206,14 +196,13 @@
             </thead>
             <tbody>
                 <!-- /// KATEGORIE 1 /// -->
-                <tr class="data-row odd">
-                    <!-- The category cell now has a new color class -->
-                    <td class="category-cell category-color-1" rowspan="2">GEZIELTE VORBEREITUNG</td>
+                <!-- The new class is applied to the row itself -->
+                <tr class="category-row-1">
+                    <td class="category-cell" rowspan="2">GEZIELTE VORBEREITUNG</td>
                     
                     <td class="flip-container">
-                        <!-- Info bubble moved here -->
                         <div class="info-bubble">
-                            POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
+                            POP-UP for content. TEST TEST TEST TEST TEST TEST.
                         </div>
                         <a href="https://www.google.com" target="_blank" class="card-link">
                             <div class="flipper">
@@ -242,11 +231,10 @@
                     <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
                     <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
                 </tr>
-                <!-- Second row in this category is now 'even' -->
-                <tr class="data-row even">
+                <!-- Second row in this category -->
+                <tr class="category-row-1">
                     <!-- No category cell here, it's covered by rowspan -->
                     <td class="flip-container">
-                        <!-- Info bubble moved here -->
                         <div class="info-bubble">
                             POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
                         </div>
@@ -267,8 +255,8 @@
                 </tr>
 
                 <!-- /// KATEGORIE 2 /// -->
-                <tr class="data-row odd">
-                    <td class="category-cell category-color-2" rowspan="1">FOKUSSIERTE UMSETZUNG</td>
+                <tr class="category-row-2">
+                    <td class="category-cell" rowspan="1">FOKUSSIERTE UMSETZUNG</td>
                     <td class="flip-container">
                         <a href="#" target="_blank" class="card-link">
                             <div class="flipper">
@@ -285,8 +273,8 @@
                 </tr>
                 
                 <!-- /// KATEGORIE 3 /// -->
-                <tr class="data-row odd">
-                    <td class="category-cell category-color-3" rowspan="1">AKTIVE GESTALTUNG</td>
+                <tr class="category-row-3">
+                    <td class="category-cell" rowspan="1">AKTIVE GESTALTUNG</td>
                     <td class="flip-container">
                         <a href="#" target="_blank" class="card-link">
                             <div class="flipper">
