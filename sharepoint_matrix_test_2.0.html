@@ -8,26 +8,22 @@
         /* General styling */
         body {
             font-family: 'Segoe UI', 'Segoe UI Web (West European)', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
-            margin: 0; /* Changed to remove all default margins */
-            padding: 0; /* Changed to remove all default padding */
+            margin: 0;
+            padding: 0;
             background-color: #ffffff;
         }
 
         .matrix-container {
-            width: 100%; /* Already set to full width */
-            padding: 15px; /* Added padding to the container instead of the body */
-            box-sizing: border-box; /* Ensures padding is included in the width */
-            /* NOTE: The black border you see is likely from the SharePoint web part's
-               container and not from this code. By removing padding on the body and
-               making the internal container full-width, this code will push right
-               up against the edges of the web part. */
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
         }
 
         .main-title {
             font-size: 24px;
             color: #004578;
             font-weight: bold;
-            margin-top: 0; /* Removed top margin to align with the top edge */
+            margin-top: 0;
             margin-bottom: 20px;
         }
 
@@ -35,12 +31,12 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            border-style: hidden; /* Hide outer table border to let cells define the look */
+            border-style: hidden;
         }
 
         th, td {
             border: 1px solid #c8c6c4;
-            padding: 0; /* Padding is now controlled by inner divs */
+            padding: 0;
             text-align: left;
             vertical-align: middle;
         }
@@ -58,25 +54,35 @@
             border-bottom: 1px solid white;
         }
 
-        /* --- NEW: Category Cell Styling --- */
+        /* --- Updated: Category Cell Styling --- */
+        /* Base style for all category cells */
         td.category-cell {
-            background-color: #f0f0f0;
             font-weight: bold;
             color: #333;
             text-align: center;
             padding: 10px;
             border: 1px solid #c8c6c4;
         }
+        
+        /* New classes for different category colors */
+        .category-color-1 {
+            background-color: #e6f3ff; /* A soft blue */
+        }
+        
+        .category-color-2 {
+            background-color: #e6ffe6; /* A soft green */
+        }
 
-        /* --- NEW: Flip Card CSS --- */
-
-        /* The container for the flip effect (the table cell) */
+        .category-color-3 {
+            background-color: #fffde6; /* A soft yellow */
+        }
+        
+        /* --- Flip Card CSS --- */
         .flip-container {
             perspective: 1000px;
             background-color: transparent;
         }
 
-        /* The flipper element that gets rotated */
         .flipper {
             position: relative;
             width: 100%;
@@ -85,25 +91,23 @@
             transform-style: preserve-3d;
         }
 
-        /* Apply the flip on row hover */
         tr:hover .flipper {
             transform: rotateY(180deg);
         }
 
-        /* Front and Back side styling */
         .front, .back {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; /* Safari */
+            -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 10px;
-            box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+            box-sizing: border-box;
         }
 
         .front {
@@ -111,24 +115,28 @@
             color: #333;
         }
         
-        /* Make alternating rows a different color */
+        /* Alternating rows for better readability */
         tr.data-row.odd .front {
             background-color: #f2f2f2;
         }
 
+        tr.data-row.even .front {
+            background-color: #ffffff;
+        }
+
 
         .back {
-            background-color: #005a9e; /* A slightly brighter blue for the back */
+            background-color: #005a9e;
             color: white;
             transform: rotateY(180deg);
             text-align: center;
         }
         
-        /* --- NEW: Clickable Link Styling --- */
+        /* --- Clickable Link Styling --- */
         a.card-link {
             display: block;
             width: 100%;
-            height: 50px; /* Give the link a fixed height */
+            height: 50px;
             text-decoration: none;
             color: inherit;
         }
@@ -140,10 +148,11 @@
             margin: 0;
             font-size: 14px;
         }
-	/* --- Info Bubble Styling --- */
+        
+        /* --- Info Bubble Styling --- */
         .info-bubble {
             position: absolute;
-            bottom: 100%; /* Position above the cell */
+            bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
             margin-bottom: 15px;
@@ -152,8 +161,8 @@
             color: #fff;
             border-radius: 8px;
             white-space: nowrap;
-            opacity: 0; /* Initially hidden */
-            pointer-events: none; /* Allows mouse to pass through when hidden */
+            opacity: 0;
+            pointer-events: none;
             transition: opacity 0.3s ease;
             z-index: 10;
         }
@@ -191,22 +200,21 @@
                     <th>Flex</th>
                     <th>dT</th>
                     <th>rNM</th>
-		    <th>NOVA</th>
-		    <th>...</th>
+                    <th>NOVA</th>
+                    <th>...</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- /// KATEGORIE 1 /// -->
-                <!-- Set rowspan to the number of measures in this category (e.g., rowspan="2") -->
                 <tr class="data-row odd">
-                    <td class="category-cell" rowspan="2">GEZIELTE VORBEREITUNG</td>
+                    <!-- The category cell now has a new color class -->
+                    <td class="category-cell category-color-1" rowspan="2">GEZIELTE VORBEREITUNG</td>
                     
-                    <!-- This whole TD is one flip card -->
                     <td class="flip-container">
-			<!-- Info bubble moved here -->
+                        <!-- Info bubble moved here -->
                         <div class="info-bubble">
                             POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
-			</div>
+                        </div>
                         <a href="https://www.google.com" target="_blank" class="card-link">
                             <div class="flipper">
                                 <div class="front">NOVA-Prinzip</div>
@@ -234,13 +242,14 @@
                     <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
                     <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
                 </tr>
+                <!-- Second row in this category is now 'even' -->
                 <tr class="data-row even">
                     <!-- No category cell here, it's covered by rowspan -->
                     <td class="flip-container">
-			<!-- Info bubble moved here -->
+                        <!-- Info bubble moved here -->
                         <div class="info-bubble">
                             POP-UP for content vom Michael. TEST TEST TEST TEST TEST TEST.
-			</div>
+                        </div>
                         <a href="https://www.bing.com" target="_blank" class="card-link">
                             <div class="flipper">
                                 <div class="front">AutoTAG</div>
@@ -259,7 +268,7 @@
 
                 <!-- /// KATEGORIE 2 /// -->
                 <tr class="data-row odd">
-                    <td class="category-cell" rowspan="1">FOKUSSIERTE UMSETZUNG</td>
+                    <td class="category-cell category-color-2" rowspan="1">FOKUSSIERTE UMSETZUNG</td>
                     <td class="flip-container">
                         <a href="#" target="_blank" class="card-link">
                             <div class="flipper">
@@ -274,10 +283,10 @@
                     <td class="flip-container"><div class="flipper"><div class="front">Wert</div><div class="back">Beschreibung</div></div></td>
                     <td class="flip-container"><div class="flipper"><div class="front">...</div><div class="back">...</div></div></td>
                 </tr>
-		
-		<!-- /// KATEGORIE 3 /// -->
+                
+                <!-- /// KATEGORIE 3 /// -->
                 <tr class="data-row odd">
-                    <td class="category-cell" rowspan="1">AKTIVE GESTALTUNG</td>
+                    <td class="category-cell category-color-3" rowspan="1">AKTIVE GESTALTUNG</td>
                     <td class="flip-container">
                         <a href="#" target="_blank" class="card-link">
                             <div class="flipper">
@@ -314,9 +323,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
